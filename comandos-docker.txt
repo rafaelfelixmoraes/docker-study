@@ -1,0 +1,80 @@
+Mapear volume host-container
+docker container run -p 8080:80 -v (caminho_host):(caminho_container) nginx
+
+Rodar Container setando porta default
+docker container run -p 8080:80 (porta externa / exposta : porta interna container)
+
+Rodar container em modo daemon (em background)
+docker run -d ...
+
+Nomear container
+docker run -d --name teste-name ....
+
+Rodar container no modo interativo
+docker run -ia ...
+
+Listar logs de um container
+docker container logs (nome_container)
+
+Inspencionar Container
+docker container inspect (nome_container)
+
+Executar comandos dentro do container a partir do host
+docker container exec (nome_container) (comando_desejado)
+
+Listar Volumes
+docker volume ls
+
+Listar Imagens
+docker image ls
+
+Remover container
+docker image rm / docker volume rm / docker image rm
+
+Biuldar nova imagem alterando valores dos argumentos
+docker image build --build-arg S3_BUCKET=myapp
+
+Acessar arquivos que o inspect gera
+docker image inspect --format="{{index .Config.Labels \"maintainer\"}}" ex-build-arg
+
+Acessando arquivos de um container através de um outro container
+docker run -it --volumes-from=python-server-2 debian cat /log/http-server.log
+
+Criando tags
+docker image tag [image-old] [dockerhub-user/new-tag:1.0]
+
+Login Docker hub
+docker login --username=xxxx
+
+Pushando image para o Dockerhub
+docker image push [dockerhub-user/new-tag:1.0]
+
+Listando tipos de Rede dos containers
+docker network ls
+
+Rodando container selecionando o tipo de rede (None, Bridge, Host)
+docker run --rm[comando para remover o container] --net [tipo de rede] alpine ash -c "ifconfig"
+
+Inspecionar tipo de Rede
+docker network inspect [tipo de rede]
+
+Criando nova Rede
+docker network create --driver bridge
+
+Conectando um container a uma Rede
+docker network connect bridge container3
+
+Desconectando um container de uma Rede
+docker network disconnect [nom / tipo de rede] [container]
+
+Startar docker-compose
+docker-compose up
+
+Startar docker-compose MODO DAEMON
+docker-compose up -d
+
+Baixar Container no docker-compose
+docker-compose down
+
+Mostrar Logs do Container
+docker-compose logs -f -t
