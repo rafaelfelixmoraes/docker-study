@@ -78,3 +78,9 @@ docker-compose down
 
 Mostrar Logs do Container
 docker-compose logs -f -t
+
+Escalando Containeres
+docker-compose up -d --scale worker=3
+
+Rodando comandos dentro do container
+docker-compose exec db psql -U docker -d email_sender -c 'select * from emails'
